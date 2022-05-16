@@ -1,19 +1,25 @@
 #server.py
 import socket
-        my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        my_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        my_socket.bind(ADDRESS)
-except print(0):
-    pass
+import threading
 
-# ADDRESS = "0.0.0.0"
+my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+PORT = 8001
+ADDRESS = "0.0.0.0"
+
 broadcast_list = []
+my_socket.bind((ADDRESS, PORT))
+print('socket binded')
 
-# my_socket.bind((ADDRESS, PORT))
-def accept_loop():
+def main():
     while True:
-        my_socket.listen(1)
+        my_socket.listen()
+        print('socket now listening')
         client, client_address = my_socket.accept()
+        print('socket accepted, got connection object')
+
+        client_id = f'Your Unique ID {client_address[1]}'
+        sendTextViaSocket(client_id, client)
+
         broadcast_list.append(client)
         start_listenning_thread(client)
         
@@ -27,10 +33,39 @@ def start_listenning_thread(client):
 def listen_thread(client):
     while True:
         message = client.recv(1024).decode()
-        print(f"Received message : {message}")
-        broadcast(message)
+        if message:
+            print(f"Received message : {message}")
+            broadcast(message)
+        else:
+            print(f"client has been disconnected : {client}")
+            return
         
 def broadcast(message):
     for client in broadcast_list:
-        client.send(message.encode())
-accept_loop()
+        try:
+            client.send(message.encode())
+        except:
+            broadcast_list.remove(client)
+            print(f"Client removed : {client}")
+
+
+
+
+def sendTextViaSocket(message, sock):
+    # encode the text message
+    encodedMessage = bytes(message, 'utf-8')
+
+    # send the data via the socket to the server
+    sock.sendall(encodedMessage)
+
+    # receive acknowledgment from the server
+    encodedAckText = sock.recv(1024)
+    ackText = encodedAckText.decode('utf-8')
+
+
+# end function
+
+if __name__ == '__main__':
+    main()
+    # accept_loop()
+
