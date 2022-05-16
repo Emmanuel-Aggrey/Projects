@@ -1,0 +1,6 @@
+INFO 2022-05-16 10:20:06,544 -Synchronizing directory TESTING_DIR/destination with TESTING_DIR/source
+INFO 2022-05-16 10:20:06,544 -Source directory: TESTING_DIR/source:
+INFO 2022-05-16 10:20:06,545 -Copying file cpu_usage.py from TESTING_DIR/source/ to TESTING_DIR/destination/
+INFO 2022-05-16 10:20:06,563 -dirsync finished in 0.01 seconds at 2022-05-16 10:20:06:AM 
+INFO 2022-05-16 10:20:06,563 -1 directories parsed, 1 files copied
+INFO 2022-05-16 10:20:06,563 -

@@ -1,0 +1,10 @@
+kill -9 $(sudo lsof -t -i:8002)
+
+sudo kill -9 `sudo lsof -t -i:8002`
+
+#GET PID ON PORT
+lsof -i tcp:port
+
+# KILL THE PORT
+kill -9 port
+
