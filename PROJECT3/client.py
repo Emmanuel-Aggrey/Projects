@@ -10,7 +10,7 @@ port = int(input('PORT NUMBER: ').strip())
 my_socket.connect((host, port))
 def thread_sending():
     while True:
-        message_to_send = input('Enter Your Message :')
+        message_to_send = input('Enter Your Message :\n')
         if message_to_send:
             message_with_nickname = nickname + " : " + message_to_send
             my_socket.send(message_with_nickname.encode())

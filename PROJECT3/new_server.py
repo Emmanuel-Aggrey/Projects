@@ -4,22 +4,32 @@ import threading
 import random
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-PORT = 8002
+PORT = 8001
 ADDRESS = "0.0.0.0"
-broadcast_list = []
+broadcast_list = [] 
 connected_identifiers = {}
 my_socket.bind((ADDRESS, PORT))
+print('socket binded')
 def accept_loop():
     while True:
         my_socket.listen()
+        # print('socket now listening')
+        
         client, client_address = my_socket.accept()
-        broadcast_list.append(client)
-        client_id = f'Your Unique ID  {client_address[1]}'
-        client.send(client_id.encode())
         # identifier = client.recv(1024).decode()
-        # connected_identifiers.update({unique_identifier(identifier):generated_address()})
+
+        broadcast_list.append(client)
+
+        client_id = f'Your Unique ID: {generated_address()}'
+
+        client.send(client_id.encode())
+
+        # identifier = client.recv(1024).decode()
 
         start_listenning_thread(client)
+
+        #RECEIVE DATA FROM CLIENT
+        
         
 def start_listenning_thread(client):
     client_thread = threading.Thread(
@@ -31,11 +41,14 @@ def start_listenning_thread(client):
 def listen_thread(client):
     while True:
         message = client.recv(1024).decode()
+        # identifier = client.recv(1024).decode()
         if message:
             print(f"Received message : {message}")
             broadcast(message)
+            print(connected_identifiers)
         else:
             print(f"client has been disconnected : {client}")
+            broadcast_list.remove(client)
             return
         
 def broadcast(message):
@@ -54,7 +67,6 @@ def unique_identifier(identifier):
     identifier = identifier.replace(' ','')
     identifier =identifier[ 0 : identifier.index(":")]
     return identifier
-
 
 
 def generated_address():

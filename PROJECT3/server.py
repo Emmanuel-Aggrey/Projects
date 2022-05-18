@@ -4,7 +4,7 @@ import threading
 import random
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-PORT = 8002
+PORT = 8003
 ADDRESS = "0.0.0.0"
 
 broadcast_list = []
@@ -17,7 +17,7 @@ def accept_loop():
         my_socket.listen()
         print('socket now listening')
         client, client_address = my_socket.accept()
-        client_id = f'Your Unique ID  {generated_address()}'
+        client_id = f'Your Unique ID:  {generated_address()}'
         client.send(client_id.encode())
 
 
@@ -25,9 +25,9 @@ def accept_loop():
         start_listenning_thread(client)
         broadcast_list.append(client)
         identifier = client.recv(1024).decode()
-        print("identifier",identifier,"client_id",client_id)
 
         connected_identifiers.update({unique_identifier(identifier):generated_address()})
+        print(connected_identifiers)
         
        
 def start_listenning_thread(client):
@@ -54,12 +54,12 @@ def listen_thread(client):
 def broadcast(message):
     for client in  broadcast_list:
         try:
-            client= client.send(message.encode())
+            # client= client.send(message.encode())
             print('Active clients listening: ',len(broadcast_list))
 
       
         except:
-            # del broadcast_list[client]
+            del broadcast_list[client]
             broadcast_list.remove(client)
             print(f"Client removed : {client}")
 
@@ -76,6 +76,7 @@ def sendTextViaSocket(message, sock):
     # receive acknowledgment from the server
     encodedAckText = sock.recv(1024)
     ackText = encodedAckText.decode('utf-8')
+    return ackText
 
 
 
