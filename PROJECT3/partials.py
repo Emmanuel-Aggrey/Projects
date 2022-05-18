@@ -25,16 +25,17 @@ def check_client_availability(available):
     data = [df.to_string(index=False)]
     clean_data= ''.join(data).split()
     if available in clean_data:
-        # print('True ',available)
+        print('available ',available)
+    
         return True
     else:
-        # print('False ',available)
-        return False
+        print('not available ',available)
+    
 
-check_client_availability("9001")
+# check_client_availability("9001")
 
 
-
+# GET UNIQUE CODE FROM SERVER IF CLIENT SENDS ITS IDENTIFIER
 
 def get_client_unique_id(client_id):
     df = pd.read_csv('clients_ids.csv')
@@ -42,16 +43,11 @@ def get_client_unique_id(client_id):
     clean_data= ''.join(data).split()
     
     client_id = Convert(clean_data).get(client_id,None)
-    if client_id:
-        print(client_id)
-        return client_id
-    else: 
-        print(client_id)
-        return client_id
-    # print(data)
+    client_id if True else False
+       
+    return client_id
 
 
 
-
-get_client_unique_id("9001")
+# get_client_unique_id("9001")
 

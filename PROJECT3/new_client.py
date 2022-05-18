@@ -7,7 +7,8 @@ connected_identifiers = {}
 
 identifier = input("Choose your unique identifier : ").strip()
 while not identifier.isdigit():
-    identifier = input("Your unique identifier must be a digit : ").strip()
+    #avoid spaces in user input
+    identifier = input("Your unique identifier must be a digit : ").strip() 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = "localhost" # "127.0.1.1"
 port = 8001
@@ -24,14 +25,13 @@ def thread_receiving():
         message = my_socket.recv(1024).decode()
 
 
-        
+        # GET THE LAST SIX CLIENT ID FROM SERVER
         message =message[-6:]
-        print(message,': identifier',identifier)
-
-        # with open ('clients_ids.json','a') as clients_ids:
-            # clients_ids.write(json.dumps({'id':message,'identifier':identifier},indent=4,))
-        
-        partials.save_clients(identifier,message)
+    
+        # DONT SAVE TO FILE IF CLIENT EXISTS
+        if  not partials.check_client_availability(identifier):
+            # print("identifier",identifier)
+            partials.save_clients(identifier,message)
 
 
         
@@ -51,4 +51,3 @@ def unique_identifier(identifier):
 
 
         
-        # clients_ids.write(json.dumps(clients))
