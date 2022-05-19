@@ -61,4 +61,10 @@ def get_client_unique_id(client_id):
 
 
 
+def unique_identifier(identifier):
+    
+    identifier = identifier.replace(' ','')
+    identifier =identifier[ 0 : identifier.index(":")]
+    return identifier
+
 

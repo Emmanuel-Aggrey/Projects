@@ -35,19 +35,20 @@ identified_client = partials.check_client_availability(identifier)
 if not identified_client:
     partials.save_clients(identifier,message_re)
 
-# print("identified_client",identified_client,"client_id",client_id)
 # CONTINUE SENDING REQUESTS
 def thread_sending():
-    if identified_client:
-        verify_client_id = input('Enter your client ID:\n').strip()
+    while identified_client:
+        client_id = input('Enter Your Valid ID: ').strip()
+
+        if client_id == generated_address:
+            break
 
     while True:
 
         message_to_send = input('Enter Your Message :\n')
-        # print("identified_client",identified_client)
-        # identified_client = True
-        identified = "TRUE" if identified_client else "" 
-        # print("identified_client",identified)
+        
+        identified = "log" if identified_client else "" 
+      
         if message_to_send:
             message_with_identifier = identifier + " : " + message_to_send+ ""+identified
             my_socket.send(message_with_identifier.encode())

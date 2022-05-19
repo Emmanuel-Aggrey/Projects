@@ -1,3 +1,4 @@
 dirsync
-socketserver
 select
+psutil
+pandas

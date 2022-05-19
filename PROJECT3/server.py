@@ -2,7 +2,6 @@ import logging
 import random
 import select
 import socket
-import socketserver
 import threading
 from datetime import datetime
 
@@ -69,12 +68,16 @@ def listen_thread(clients):
     while True:
         message = clients.recv(1024).decode()
 
-        if message.endswith('TRUE'):
-            # print('new ',message.replace('TRUE',''))
-            new_message = message.replace('TRUE','')
+        if message.endswith('log'):
+            # client_id = partials.unique_identifier(message)
+
+            new_message = message.replace('log','')
+
+            # print('THE MOST NEW MESSAGE: ',partials.unique_identifier(new_message))
             
+            # LOG IDENTIFIED CLIENT MESSAGE
             logging.basicConfig(
-                filename='LOGS/messages.log', 
+                filename=f'LOGS/messages.log', 
                 level=logging.INFO
                 )
             today = datetime.now().today().strftime('%d-%m-%Y-%H:%M:%S')
@@ -87,7 +90,7 @@ def listen_thread(clients):
        
         if message:
 
-            print(f"Received message : {message.replace('TRUE','')}")
+            print(f"Received message {message.replace('log','')}")
             broadcast(message)
         else:
         
@@ -98,10 +101,10 @@ def listen_thread(clients):
 def broadcast(message):
     for clients in broadcast_list:
         try:
-            message = message.replace('TRUE','')
+            # print('client_id client_id',client_id)
+            message = message.replace('log','')
             clients.send(message.encode())
-            # print('Active clients listening: ',len(broadcast_list))
-            # print('connected_identifiers',connected_identifiers)
+            #
         except:
             
             broadcast_list.remove(clients)
