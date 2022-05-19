@@ -39,13 +39,17 @@ if not identified_client:
 # CONTINUE SENDING REQUESTS
 def thread_sending():
     if identified_client:
-        verify_client_id = int(input('Enter your client ID:\n').strip())
+        verify_client_id = input('Enter your client ID:\n').strip()
 
     while True:
 
         message_to_send = input('Enter Your Message :\n')
+        # print("identified_client",identified_client)
+        # identified_client = True
+        identified = "TRUE" if identified_client else "" 
+        # print("identified_client",identified)
         if message_to_send:
-            message_with_identifier = identifier + " : " + message_to_send
+            message_with_identifier = identifier + " : " + message_to_send+ ""+identified
             my_socket.send(message_with_identifier.encode())
             
 

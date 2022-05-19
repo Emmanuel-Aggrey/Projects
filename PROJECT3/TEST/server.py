@@ -4,13 +4,13 @@ import random
 import socketserver
 import select
 import partials
-
+import logging
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 broadcast_list = [] 
 connected_identifiers = {}
 servers = [] 
-portlist = [8000,8001]
+portlist = [8002,8003]
 for port in portlist:
     ds = ("0.0.0.0", port)
 
@@ -66,8 +66,16 @@ def start_listenning_thread(clients):
 def listen_thread(clients):
     while True:
         message = clients.recv(1024).decode()
+
+        if message.endswith('TRUE'):
+            # print('new ',message.replace('TRUE',''))
+            new_message = message.replace('TRUE','')
+            logging.basicConfig(filename='messages.log', level=logging.DEBUG)
+            logging.info(new_message)
+       
         if message:
-            print(f"Received message : {message}")
+
+            print(f"Received message : {message.replace('TRUE','')}")
             broadcast(message)
         else:
         
@@ -78,6 +86,7 @@ def listen_thread(clients):
 def broadcast(message):
     for clients in broadcast_list:
         try:
+            message = message.replace('TRUE','')
             clients.send(message.encode())
             # print('Active clients listening: ',len(broadcast_list))
             # print('connected_identifiers',connected_identifiers)
