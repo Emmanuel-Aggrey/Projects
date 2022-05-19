@@ -29,17 +29,20 @@ else:
     print('------------------------------------------------------ \n')
 
 # DONT SAVE TO FILE IF IDENTIFIER EXISTS
-generated_address = partials.get_client_unique_id(identifier)
 message_re=str(message_re[-6:])
-identified_client = partials.check_client_availability(identifier)
-if not identified_client:
+if not partials.check_client_availability(identifier):
     partials.save_clients(identifier,message_re)
+    time.sleep(2)
 
-# print("identified_client",identified_client,"client_id",client_id)
+identified_client = partials.check_client_availability(identifier)
+# old_client=partials.get_client_unique_id(identifier)
+print("identified_client",identified_client)
 # CONTINUE SENDING REQUESTS
 def thread_sending():
     if identified_client:
-        verify_client_id = int(input('Enter your client ID:\n').strip())
+        old_client_id = input('Enter your client ID:\n').strip()
+    # while not old_client_id:
+    #     input("Incorrect Client ID Try Again:\n").strip()
 
     while True:
 
