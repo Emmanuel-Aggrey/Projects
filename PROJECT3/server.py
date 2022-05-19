@@ -1,11 +1,12 @@
-import socket
-import threading
-import random
-import socketserver
-import select
-import partials
 import logging
+import random
+import select
+import socket
+import socketserver
+import threading
 from datetime import datetime
+
+import partials
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 broadcast_list = [] 

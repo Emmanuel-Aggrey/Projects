@@ -41,8 +41,12 @@ def fileSysnc(interval=1):
     if run:
         Timer(interval,fileSysnc).start()
     # RUN SYNC BETWEEN SOURCE AND DESTINATION
+
+    
     sync(source, destination, logfile_name,'sync',verbose=True,purge=True,create=True)
-    print(f'waiting for {interval}s to sync again')
+
+
+    print(f'waiting for {interval} seconds to begin sync')
 
 
 

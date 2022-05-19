@@ -1,0 +1,6 @@
+INFO 2022-05-19 14:05:17,384 -Synchronizing directory LOGS/DESTINATION with LOGS/SOURCE
+INFO 2022-05-19 14:05:17,384 -Source directory: LOGS/SOURCE:
+INFO 2022-05-19 14:05:17,385 -Copying file FINAL_BACKUP.zip from LOGS/SOURCE/ to LOGS/DESTINATION/
+INFO 2022-05-19 14:05:17,386 -dirsync finished in 0.00 seconds at 2022-05-19 14:05:17:PM 
+INFO 2022-05-19 14:05:17,386 -1 directories parsed, 1 files copied
+INFO 2022-05-19 14:05:17,386 -
