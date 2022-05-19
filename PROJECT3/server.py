@@ -5,12 +5,13 @@ import socketserver
 import select
 import partials
 import logging
+from datetime import datetime
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 broadcast_list = [] 
 connected_identifiers = {}
 servers = [] 
-portlist = [8002,8003]
+portlist = [8003,8002]
 for port in portlist:
     ds = ("0.0.0.0", port)
 
@@ -70,8 +71,18 @@ def listen_thread(clients):
         if message.endswith('TRUE'):
             # print('new ',message.replace('TRUE',''))
             new_message = message.replace('TRUE','')
-            logging.basicConfig(filename='messages.log', level=logging.DEBUG)
-            logging.info(new_message)
+            
+            logging.basicConfig(
+                filename='LOGS/messages.log', 
+                level=logging.INFO
+                )
+            today = datetime.now().today().strftime('%d-%m-%Y-%H:%M:%S')
+            msg = f'{new_message} : {today}'
+            logging.info(msg)
+
+            
+            
+            
        
         if message:
 

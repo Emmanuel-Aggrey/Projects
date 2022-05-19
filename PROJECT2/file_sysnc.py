@@ -23,6 +23,7 @@ def fileSysnc(interval=1):
     path=''
     while True:
         source = input('Enter A Valid Source : ').strip()
+        print(source)
         path = os.path.exists(source)
         if source and path:
             break
@@ -41,6 +42,7 @@ def fileSysnc(interval=1):
         Timer(interval,fileSysnc).start()
     # RUN SYNC BETWEEN SOURCE AND DESTINATION
     sync(source, destination, logfile_name,'sync',verbose=True,purge=True,create=True)
+    print(f'waiting for {interval}s to sync again')
 
 
 
