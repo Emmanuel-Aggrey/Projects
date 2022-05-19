@@ -1,98 +1,106 @@
-#server.py
 import socket
 import threading
 import random
+import socketserver
+import select
+import partials
+import logging
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-PORT = 8003
-ADDRESS = "0.0.0.0"
-
-broadcast_list = []
+broadcast_list = [] 
 connected_identifiers = {}
-my_socket.bind((ADDRESS, PORT))
-print('socket binded')
+servers = [] 
+portlist = [8002,8003]
+for port in portlist:
+    ds = ("0.0.0.0", port)
+
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    # print('connection binded')
+    server.bind(ds)
+    server.listen(1)
+    
+    
+
+    servers.append(server)
+    print('socket now listening')
 
 def accept_loop():
+    server.listen(1)
     while True:
-        my_socket.listen()
-        print('socket now listening')
-        client, client_address = my_socket.accept()
-        client_id = f'Your Unique ID:  {generated_address()}'
-        client.send(client_id.encode())
+    # Wait for any of the listening servers to get a clients
+    # clients attempt
+        readable,_,_ = select.select(servers, [], [])
+        ready_server = readable[0]
+    
 
-
+        clients, address = ready_server.accept()
+        # identifier = clients.recv(1024).decode()
         
-        start_listenning_thread(client)
-        broadcast_list.append(client)
-        identifier = client.recv(1024).decode()
+        client_address = generated_address()
+        CONNECTED_CLIENT = f'YOUR UNIQUE IDENTIFIER : {client_address}'
+        print('CONNECTED CLIENT: ',address)
 
-        connected_identifiers.update({unique_identifier(identifier):generated_address()})
-        print(connected_identifiers)
-        
-       
-def start_listenning_thread(client):
+        clients.send(CONNECTED_CLIENT.encode())
+
+
+        broadcast_list.append(clients)
+        print('Active clients listening: ',len(broadcast_list))
+
+    
+
+
+        start_listenning_thread(clients)
+
+#         #RECEIVE DATA FROM CLIENT
+def start_listenning_thread(clients):
     client_thread = threading.Thread(
             target=listen_thread,
-            args=(client,) #the list of argument for the function
+            args=(clients,) #the list of argument for the function
         )
-
     client_thread.start()
-    # print("client_thread",client_thread)s
     
-def listen_thread(client):
+
+
+
+def listen_thread(clients):
     while True:
-        message = client.recv(1024).decode()
+        message = clients.recv(1024).decode()
+
+        if message.endswith('TRUE'):
+            # print('new ',message.replace('TRUE',''))
+            new_message = message.replace('TRUE','')
+            logging.basicConfig(filename='messages.log', level=logging.DEBUG)
+            logging.info(new_message)
+       
         if message:
-            
-            print(f"Received message : {message}")
+
+            print(f"Received message : {message.replace('TRUE','')}")
             broadcast(message)
-            print(connected_identifiers)
         else:
-            print(f"client has been disconnected : {client}")
+        
+            print(f"client has been disconnected : {clients}")
+            # broadcast_list.remove(clients)
             return
         
 def broadcast(message):
-    for client in  broadcast_list:
+    for clients in broadcast_list:
         try:
-            # client= client.send(message.encode())
-            print('Active clients listening: ',len(broadcast_list))
-
-      
+            message = message.replace('TRUE','')
+            clients.send(message.encode())
+            # print('Active clients listening: ',len(broadcast_list))
+            # print('connected_identifiers',connected_identifiers)
         except:
-            del broadcast_list[client]
-            broadcast_list.remove(client)
-            print(f"Client removed : {client}")
-
-
-
-
-def sendTextViaSocket(message, sock):
-    # encode the text message
-    encodedMessage = bytes(message, 'utf-8')
-
-    # send the data via the socket to the server
-    sock.sendall(encodedMessage)
-
-    # receive acknowledgment from the server
-    encodedAckText = sock.recv(1024)
-    ackText = encodedAckText.decode('utf-8')
-    return ackText
-
-
-
-# end function
-
-def unique_identifier(identifier):
-
-    identifier = identifier.replace(' ','')
-    identifier =identifier[ 0 : identifier.index(":")]
-    return identifier
+            
+            broadcast_list.remove(clients)
+            # print(f"Client removed : {clients}")
 
 def generated_address():
     return random.randint(10**5, 10**6 - 1)
 
 
 
-
 accept_loop()
+
+
 
