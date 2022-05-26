@@ -11,7 +11,7 @@ my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 broadcast_list = [] 
 connected_identifiers = {}
 servers = [] 
-portlist = [8003,8002]
+portlist = [8000,8001]
 for port in portlist:
     ds = ("0.0.0.0", port)
 
