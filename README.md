@@ -24,9 +24,9 @@ The dirsync package has a default parameters as
 
 sync(**source, destination, sync, logger=logger, **options**)
 
-* The source and destination will always be the same
+* The conetnt of the source and destination will always be the same
 * Files already coppied to the destination will be skipped during syncronisation
-* Files found in the distination that are not in source will be delated to ensure data integrity
+* Files found in the destination that are not in source will be deleted to ensure data integrity
 * All results are logged to a Log file
 * The Source must be a valid directory else the process will not continue
 * If destination Directory is not provided, a default desitnination Directory will be created and files will be copied into it
@@ -39,9 +39,9 @@ sync(**source, destination, sync, logger=logger, **options**)
 
 **PROJECT THREE DEPENDENCIES**
 
-* i.	socket : Helps to implement socket programming in python (communication between server and clients async)
-* select: Selects the incoming port and forwards it socket.accept() to use a single port in the the request and response circle
-* pandas: Data analytics package - used to read the csv file used to save  clients and server data
+* Socket IO: Helps to implement socket programming in python (communication between server and clients async)
+* Select module:  This selects the incoming port and forwards it to **socket.accept()** to specify the required port to communicate with in the response and request cycle.
+* pandas: Data analytics package - Used to read the csv file used to save  clients and server data
 * When clients disconnect the server detects and removes them from the list of acitve clients
 * When a client wants to connect, the server will require an ID from the client which must be an INT
 * After the ID is provided a uniqure ID is given to the client
