@@ -6,13 +6,14 @@ import time
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
-identifier = input("Choose your unique identifier : ").strip()
+identifier = input("Choose your unique ID : ").strip()
 while not identifier.isdigit():
     #AVOID SPACES IN USER INPUT
-    identifier = input("Your unique identifier must be a digit : ").strip() 
+    identifier = input("Your unique ID must be a digit : ").strip() 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = "localhost" # "127.0.1.1"
-port = int(input('Enter Port : '))
+port = int(input('Enter Port Number \n default port 8001 : ') or 8001)
+
 my_socket.connect((host, port))
 
 

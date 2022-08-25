@@ -11,7 +11,7 @@ my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 broadcast_list = [] 
 connected_identifiers = {}
 servers = [] 
-portlist = [8003,8002]
+portlist = [8001,8002]
 for port in portlist:
     ds = ("0.0.0.0", port)
 
@@ -39,7 +39,7 @@ def accept_loop():
         # identifier = clients.recv(1024).decode()
         
         client_address = generated_address()
-        CONNECTED_CLIENT = f'YOUR UNIQUE IDENTIFIER : {client_address}'
+        CONNECTED_CLIENT = f'YOUR UNIQUE ID : {client_address}'
         print('CONNECTED CLIENT: ',address)
 
         clients.send(CONNECTED_CLIENT.encode())
@@ -90,11 +90,12 @@ def listen_thread(clients):
        
         if message:
 
-            print(f"Received message {message.replace('log','')}")
+            print(f"Client {message.replace('log','')}")
             broadcast(message)
         else:
         
             print(f"client has been disconnected : {clients}")
+            broadcast_list.remove(clients)
             # broadcast_list.remove(clients)
             return
         
@@ -106,8 +107,9 @@ def broadcast(message):
             clients.send(message.encode())
             #
         except:
+            pass
             
-            broadcast_list.remove(clients)
+            
             # print(f"Client removed : {clients}")
 
 def generated_address():

@@ -6,24 +6,22 @@ import csv
 
 cpu_percentage = psutil.cpu_percent()
 
-
-def get_cpu_percentage(interval=4,repeat=5,seconds=1):
+#METHOD TO SET CPU AND TIME INTERVAL
+def get_cpu_percentage(interval=5,repeat=5):
     cpu_percentage = psutil.cpu_percent(interval=interval)
     
 
-    
+    # LOOP PER THE REQUIRD INTERVAL
     for i in range(repeat):
-        # start = datetime.now()
         cpu_percentage = psutil.cpu_percent(interval=interval)
-        # end = datetime.now()
-        # time_taken = end - start
+  
         data = {
             'CPU_Usage': cpu_percentage,
             'Time_taken': datetime.now().strftime('%H:%M:%S')
 
         }
-        # time.sleep(seconds)
 
+        # DUMP THE RESULTS TO JSON
         json_object =  json.dumps(data,indent=4)
         with open ('LOGS/cpu_usage.json','a') as json_file:
             json_file.write(json_object)
@@ -38,7 +36,9 @@ def get_cpu_percentage(interval=4,repeat=5,seconds=1):
 
     return cpu_percentage
 
+    interval = int(input('Enter The Number Of sync interval : ').strip() or 1)
 
+# RUN THE RESULTS
 get_cpu_percentage()
 
 

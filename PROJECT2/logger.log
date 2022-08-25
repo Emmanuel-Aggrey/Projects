@@ -1,0 +1,47 @@
+INFO 2022-08-25 15:38:47,719 -Synchronizing directory /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination with source
+INFO 2022-08-25 15:38:47,721 -Source directory: source:
+INFO 2022-08-25 15:38:47,723 -Copying file file_sysnc.py from source/ to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/
+INFO 2022-08-25 15:38:47,726 -dirsync finished in 0.00 seconds at 2022-08-25 15:38:47:PM 
+INFO 2022-08-25 15:38:47,726 -1 directories parsed, 1 files copied
+INFO 2022-08-25 15:38:47,726 -
+INFO 2022-08-25 15:39:21,898 -Synchronizing directory /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination with source
+INFO 2022-08-25 15:39:21,898 -Source directory: source:
+INFO 2022-08-25 15:39:21,899 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync
+INFO 2022-08-25 15:39:21,901 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/version.py
+INFO 2022-08-25 15:39:21,901 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__/options.cpython-38.pyc
+INFO 2022-08-25 15:39:21,905 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__
+INFO 2022-08-25 15:39:21,905 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__/run.cpython-38.pyc
+INFO 2022-08-25 15:39:21,906 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__/version.cpython-38.pyc
+INFO 2022-08-25 15:39:21,906 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/options.py
+INFO 2022-08-25 15:39:21,907 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__/syncer.cpython-38.pyc
+INFO 2022-08-25 15:39:21,907 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/run.py
+INFO 2022-08-25 15:39:21,907 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/syncer.py
+INFO 2022-08-25 15:39:21,908 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__init__.py
+INFO 2022-08-25 15:39:21,908 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__/__init__.cpython-38.pyc
+INFO 2022-08-25 15:39:21,909 -dirsync finished in 0.01 seconds at 2022-08-25 15:39:21:PM 
+INFO 2022-08-25 15:39:21,909 -3 directories parsed, 0 files copied
+INFO 2022-08-25 15:39:21,909 -1 directories were purged(removed).
+INFO 2022-08-25 15:39:21,909 -
+INFO 2022-08-25 15:39:48,149 -Synchronizing directory /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination with source
+INFO 2022-08-25 15:39:48,149 -Source directory: source:
+INFO 2022-08-25 15:39:48,153 -Copying file run.py from source/dirsync to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync
+INFO 2022-08-25 15:39:48,157 -Copying file version.cpython-38.pyc from source/dirsync/__pycache__ to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__
+INFO 2022-08-25 15:39:48,160 -Copying file syncer.py from source/dirsync to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync
+INFO 2022-08-25 15:39:48,162 -Copying file options.cpython-38.pyc from source/dirsync/__pycache__ to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__
+INFO 2022-08-25 15:39:48,168 -Copying file run.cpython-38.pyc from source/dirsync/__pycache__ to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__
+INFO 2022-08-25 15:39:48,170 -Copying file syncer.cpython-38.pyc from source/dirsync/__pycache__ to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__
+INFO 2022-08-25 15:39:48,173 -Copying file __init__.cpython-38.pyc from source/dirsync/__pycache__ to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync/__pycache__
+INFO 2022-08-25 15:39:48,176 -Copying file version.py from source/dirsync to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync
+INFO 2022-08-25 15:39:48,179 -Copying file options.py from source/dirsync to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync
+INFO 2022-08-25 15:39:48,181 -Copying file __init__.py from source/dirsync to /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/dirsync
+INFO 2022-08-25 15:39:48,184 -dirsync finished in 0.03 seconds at 2022-08-25 15:39:48:PM 
+INFO 2022-08-25 15:39:48,184 -3 directories parsed, 10 files copied
+INFO 2022-08-25 15:39:48,184 -2 directories were created.
+INFO 2022-08-25 15:39:48,185 -
+INFO 2022-08-25 15:40:25,145 -Synchronizing directory /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination with source
+INFO 2022-08-25 15:40:25,145 -Source directory: source:
+INFO 2022-08-25 15:40:25,147 -Deleting /media/aggrey/Aggrey1/Projects/QA TEST/PROJECT2/Destination/file_sysnc.py
+INFO 2022-08-25 15:40:25,151 -dirsync finished in 0.00 seconds at 2022-08-25 15:40:25:PM 
+INFO 2022-08-25 15:40:25,152 -3 directories parsed, 0 files copied
+INFO 2022-08-25 15:40:25,152 -1 files were purged (removed).
+INFO 2022-08-25 15:40:25,153 -
