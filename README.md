@@ -26,7 +26,7 @@ sync(**source, destination, sync, logger=logger, **options**)
 
 * The conetnt of the source and destination will always be the same
 * Files already coppied to the destination will be skipped during syncronisation
-* Files found in the destination that are not in source will be deleted to ensure data integrity
+* Files found in the destination that are not in source will be be ignored to ensure data integrity
 * All results are logged to a Log file
 * The Source must be a valid directory else the process will not continue
 * If destination Directory is not provided, a default desitnination Directory will be created and files will be copied into it
